@@ -1,0 +1,16 @@
+SELECT 
+    class
+FROM
+    ships
+        JOIN
+    outcomes ON ships.name = outcomes.ship
+WHERE
+    result = 'sunk' 
+UNION SELECT 
+    ship
+FROM
+    outcomes
+        JOIN
+    classes ON outcomes.ship = classes.class
+WHERE
+    result = 'sunk'
