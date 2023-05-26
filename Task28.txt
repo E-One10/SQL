@@ -1,0 +1,9 @@
+SELECT 
+    COUNT(*)
+FROM
+    (SELECT 
+        COUNT(model) AS qty
+    FROM
+        product
+    GROUP BY maker
+    HAVING COUNT(model) = 1) AS q
