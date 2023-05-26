@@ -1,0 +1,28 @@
+WITH q(maker, speed) AS (
+SELECT 
+    maker, speed
+FROM
+    product
+        JOIN
+    pc ON product.model = pc.model
+WHERE
+    ram = (SELECT 
+            MIN(ram)
+        FROM
+            pc)
+)
+SELECT DISTINCT
+    maker
+FROM
+    product
+WHERE
+    type = 'Printer'
+        AND maker IN (SELECT 
+            maker
+        FROM
+            q
+        WHERE
+            speed = (SELECT 
+                    MAX(speed)
+                FROM
+                    q))
