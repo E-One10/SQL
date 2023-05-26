@@ -1,0 +1,17 @@
+WITH q(name, class) AS (
+SELECT 
+    name, class
+FROM
+    ships 
+UNION SELECT 
+    ship, ship
+FROM
+    outcomes
+        JOIN
+    classes ON outcomes.ship = classes.class
+) SELECT 
+    class
+FROM
+    q
+GROUP BY class
+HAVING COUNT(*) = 1
