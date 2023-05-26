@@ -1,0 +1,17 @@
+SELECT DISTINCT
+    point, date, SUM(out) AS out, SUM(inc) AS inc
+FROM
+    (SELECT 
+        income.point, income.date, out, inc
+    FROM
+        income
+    LEFT JOIN outcome ON income.point = outcome.point
+        AND income.date = outcome.date
+        AND income.code = outcome.code UNION ALL SELECT 
+        outcome.point, outcome.date, out, inc
+    FROM
+        outcome
+    LEFT JOIN income ON income.point = outcome.point
+        AND income.date = outcome.date
+        AND income.code = outcome.code) AS t1
+GROUP BY point, date
