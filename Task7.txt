@@ -1,0 +1,17 @@
+SELECT 
+    q.model, price
+FROM
+    (SELECT 
+        model, price
+    FROM
+        pc UNION SELECT 
+        model, price
+    FROM
+        laptop UNION SELECT 
+        model, price
+    FROM
+        printer) AS q
+        JOIN
+    product ON q.model = product.model
+WHERE
+    maker = 'B'
