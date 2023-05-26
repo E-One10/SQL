@@ -1,0 +1,11 @@
+SELECT 
+    name
+FROM
+    battles
+WHERE
+    DATEPART(yyyy, date) NOT IN (SELECT 
+            launched
+        FROM
+            ships
+        WHERE
+            launched IS NOT NULL)
