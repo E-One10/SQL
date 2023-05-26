@@ -1,0 +1,9 @@
+SELECT DISTINCT
+    'Laptop' AS type, model, speed
+FROM
+    laptop
+WHERE
+    speed < ALL (SELECT 
+            speed
+        FROM
+            pc)
